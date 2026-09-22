@@ -1,0 +1,327 @@
+You are an expert bilingual data engineer and computational linguist specializing in Indonesian–English code-mixed social media text. Your task is to generate authentic code-mixed training data for a hate speech detection research
+project.
+
+════════════════════════════════════════════════════════════════
+RESEARCH CONTEXT
+════════════════════════════════════════════════════════════════
+This dataset is one component of a 40,000-row multilingual corpus for training BLOOM-560m on informal Indonesian-English hate speech detection. The full corpus is composed as follows:
+  • Indonesian  (~12,000 rows) — real social media data from Hugging Face
+  • English     (~12,000 rows) — real social media data from Hugging Face
+  • Code-mixed  (~16,000 rows) — YOUR OUTPUT (this session, 40 batches × 400 rows)
+
+Your generated data must be stylistically indistinguishable from real bilingual Indonesian social media posts. This is the single most critical quality requirement.
+
+════════════════════════════════════════════════════════════════
+REFERENCE DATA — THIS IS YOUR MOST IMPORTANT INSTRUCTION
+════════════════════════════════════════════════════════════════
+Attached to this conversation are sample rows from the real Indonesian and English hate speech datasets sourced from Hugging Face:
+- manueltonneau/indonesian-hate-speech-superset
+- manueltonneau/english-hate-speech-superset
+
+BEFORE generating anything, study the attached samples (.csv files) carefully for:
+  • The actual sentence structures and syntax patterns in hate vs. non-hate rows
+  • Register and tone: how aggressive/mild, explicit/subtle the real posts are
+  • The actual range of topics (race, religion, gender, daily life, politics, etc.)
+  • How informal language appears naturally — not forced, not exaggerated
+  • Sentence length distribution: real hate posts tend to be SHORT (outbursts, slurs, quick attacks); real non-hate posts tend to be LONGER (narrative, complaints, stories, questions)
+
+Align your generated text to those observations. Do NOT default to producing data that is uniformly explicit, uniformly short, or uniformly aggressive. Real hate speech datasets contain a wide spectrum from very mild to very explicit.
+
+IMPORTANT: Do NOT copy any sentence from the reference data verbatim. Generate original sentences STYLISTICALLY CONSISTENT with what you observe.
+
+════════════════════════════════════════════════════════════════
+WHAT IS CODE-MIXING IN THIS CONTEXT?
+════════════════════════════════════════════════════════════════
+Code-mixing is the natural, organic interweaving of Indonesian and English
+within a single utterance — exactly as observed on Indonesian social media
+(Twitter/X, Instagram, TikTok, YouTube comments, forum threads).
+
+This is NOT mechanical translation. This is NOT random English word insertion.
+It must feel authentic to a bilingual Indonesian speaker aged 18–35.
+
+════════════════════════════════════════════════════════════════
+⚠ CRITICAL ANTI-PATTERN — READ THIS BEFORE GENERATING ANYTHING
+════════════════════════════════════════════════════════════════
+DO NOT write one clause in Indonesian then restate or translate the same
+meaning in English (or vice versa). That is TRANSLATION, not code-mixing.
+
+  ✗ WRONG — same content said twice in two languages:
+      "antrian panjang banget. the queue is really long"
+      "gue capek banget. i am so tired right now"
+      "dia nyebelin. he is so annoying"
+      "pelayanannya jelek. the service here is bad"
+
+  ✓ CORRECT — each clause carries DIFFERENT, COMPLEMENTARY information:
+      "antrian panjang banget, and yet they only opened one counter??"
+      "gue capek bgt tp deadline masih 3 hari lagi smh"
+      "dia ghosting gue tiba-tiba, like what did i even do wrong"
+      "pelayanannya jelek parah, honestly gue gak bakal balik lagi"
+
+THE TEST: Cover the second half. Does the first half already say the exact
+same thing? If YES → the sentence is disguised translation. REWRITE IT.
+Both halves MUST contribute distinct information, emotion, or escalation.
+
+════════════════════════════════════════════════════════════════
+THREE CODE-MIXING PATTERNS — ALL REQUIRED
+════════════════════════════════════════════════════════════════
+You MUST use all three patterns. Target distribution per 400-row batch:
+  ~130–135 rows → INSERTIONAL
+  ~130–135 rows → ALTERNATIONAL
+  ~130–135 rows → HYBRID INFORMAL
+
+1. INSERTIONAL (~130–135 rows)
+     Indonesian base structure with English content words or short phrases
+     organically embedded where a bilingual speaker would naturally switch.
+     The Indonesian grammatical frame remains dominant. English words fill
+     lexical gaps, add emphasis, or carry nuance the speaker naturally
+     reaches for in English rather than Indonesian.
+
+     Non-hate examples:
+       "gue literally belum makan dari tadi, starving bgt nih"
+       "meeting tadi so boring, gue hampir ketiduran fr"
+       "mereka tuh susah banget diajak collaborate, always late"
+       "udah overthinking dari pagi, nothing feels worth it sih"
+     Hate examples:
+       "orang-orang kayak lo tuh disgusting, bikin malu bangsa aja"
+       "mereka emang inferior, no wonder selalu kalah terus"
+
+  2. ALTERNATIONAL (~130–135 rows)
+     Language switches at a clause or sentence boundary. The FIRST clause
+     sets up context, action, or emotion. The SECOND clause CONTINUES,
+     REACTS TO, CONTRASTS WITH, or ESCALATES the first.
+
+     ⚠ The second clause must NOT restate or translate the first.
+        It must move the utterance forward with new content.
+
+     Non-hate examples:
+       "gue udah coba bilang baik-baik, honestly i don't know what else to do"
+       "dia ghosting gue tiba-tiba, like what did i even do wrong"
+       "udah minta maaf berkali-kali, they just don't wanna let it go"
+       "kerjaan numpuk banget hari ini, pretty sure i'm gonna lose my mind"
+       "literally nangis di kamar mandi, gue udah gak kuat sama situasi ini"
+     Hate examples:
+       "they keep acting so superior, padahal orang macam mereka tuh sampah"
+       "gue benci banget sama tipe orang kayak gitu, they deserve absolutely nothing"
+       "from the start i never trusted that group, bener kan ternyata emang gitu"
+       "bukan rasis ya, but their culture literally makes no effort to integrate"
+
+  3. HYBRID INFORMAL (~130–135 rows)
+     Slang, abbreviations, and expressions from both languages are fused
+     throughout — no clean switch point, fully blended. Words from both
+     languages appear within the same clause or even the same phrase.
+     There is no moment where one language "ends" and the other "begins."
+
+     Non-hate examples:
+       "lo tu fr redflag bgt, idk knp gue msh deket sm lo wkwk"
+       "literally gabisa cope, bgt overthinking soal ini smh"
+       "ngl gue lowkey baper krn dia tiba2 so sweet gitu lol"
+       "deadass gue udh mager bgt skrg, zero motivation fr fr"
+     Hate examples:
+       "org2 kampung emang fr gak tau diri, no class whatsoever"
+       "smh knp mereka dikasih hak yg sama, literally makes no sense"
+
+════════════════════════════════════════════════════════════════
+INFORMAL LANGUAGE REQUIREMENT
+════════════════════════════════════════════════════════════════
+Every generated sentence MUST feel informal — as if written quickly on a phone
+by a real Indonesian social media user. Do NOT need to flag or count these;
+just ensure they appear naturally in the text.
+
+  Indonesian slang / bahasa gaul:
+    gue, lo, gw, lu, mager, baper, bucin, slebew, gaskeun, wkwk, wkwkwk,
+    anjay, anjir, gabut, galau, bete, kepo, lebay, alay, garing, jayus,
+    otw, pdkt, ttm, php, gpp, santuy, overthinking, healing, vibes,
+    nggak, ngab, dong, sih, banget, nyebelin, kampret, laknat, sinting,
+    geblek, pekok, dodol, bego, brengsek, tolol, goblok, bajingan, bangsat,
+    sembarangan, ngeselin, songkok, sok, maksa, lebay, tiba2, otomatis
+
+  English internet slang / Gen-Z expressions:
+    no cap, slay, mid, rizz, delulu, era, ghosting, toxic, cringe,
+    situationship, redflag, lmao, lol, omg, ngl, fr, idk, smh, fomo,
+    lowkey, highkey, deadass, salty, cope, ratio, based, sus, vibe, nah,
+    it is what it is, not gonna lie, understood the assignment, i can't
+
+  Indonesian abbreviations (vowel-drop / quick-typing):
+    bgt (banget), yg (yang), dgn (dengan), krn (karena), tp (tapi),
+    blm (belum), skrg (sekarang), gmn (gimana), msh (masih), sdh (sudah),
+    trs (terus), bkn (bukan), knp (kenapa), sm (sama), dr (dari),
+    gak, gk, ga, ngga, nggak, gamau, gabisa, gatau, tdk, bs, jd, aja,
+    org, org2, tiba2, krg, br, ud, udh
+
+  Leet-speak (letter–number substitution — USE SPARINGLY, max ~20 rows per batch):
+    4nj1ng, b4b1, t0l0l, s1al, b0d0h, g0bl0k, b4ngsat, k4mp4ng
+
+════════════════════════════════════════════════════════════════
+HATE SPEECH DEFINITION — ALIGN WITH REFERENCE DATA
+════════════════════════════════════════════════════════════════
+The label schema follows the manueltonneau Hugging Face datasets. Study the attached reference rows to calibrate what label=1 looks like in real data.
+
+label = 1  (HATE SPEECH)
+  Language that is derogatory, discriminatory, or threatening toward a DEFINED
+  GROUP of people based on: race, ethnicity, religion, gender, sexual
+  orientation, nationality, disability, or socioeconomic class.
+
+  The group must be the explicit OR clearly implied target.
+
+  HATE SPEECH RANGES FROM EXPLICIT TO SUBTLE — generate both:
+
+  EXPLICIT (direct slur + group):
+    "semua orang [etnis] tuh licik, fr no cap"
+    "perempuan mah emang gak bisa mikir, ngl"
+
+  MODERATE (stereotype presented as fact or collective blame):
+    "gak heran mereka susah maju, culture mereka emang gitu"
+    "they always act like victims but they're the problem honestly"
+    "org dari sana tuh emang susah dipercaya, it is what it is"
+
+  SUBTLE (coded language, dismissal, othering of a group):
+    "lo tau lah tipe2 orang kayak gitu, never gonna change fr"
+    "they keep getting special treatment, gak fair bgt buat kita"
+    "makanya gue gak mau bergaul sm golongan itu, lowkey exhausting"
+
+  Valid group targets in Indonesian social media context:
+    • Ethnic groups: Tionghoa, Arab, Jawa, Batak, Sunda, Bule/Orang Asing
+    • Religious groups: Islam, Kristen, Kafir, Atheis
+    • Gender groups: Perempuan, Laki-laki (as a whole group)
+    • Sexual orientation: LGBT, Gay, Lesbi
+    • Class/status: Orang Miskin, Kampungan, Pendatang, Proletar
+
+  IMPORTANT: The attack targets the GROUP — not a single specific person.
+
+label = 0  (NON-HATE SPEECH)
+  Everything that does not target a defined group, including:
+    • Neutral or positive daily-life posts (food, traffic, weather, school)
+    • Relationship venting, drama, breakups — targeting a person, not a group
+    • Product complaints, service reviews, transportation rants
+    • Individual political frustration (naming the situation, not a group)
+    • Expressions of happiness, boredom, excitement, frustration
+    • Sarcasm and humor not demeaning a group
+    • Profanity or rudeness directed at ONE specific person
+    • General negativity without group-based targeting
+
+  KEY DISTINCTION — profanity and insults at a PERSON are NOT hate speech:
+    "lo brengsek bangsat, benci bgt sm lo" → label=0  (targets this person)
+    "semua cowok emang brengsek, no cap"   → label=1  (targets men as group)
+
+  NON-HATE SPEECH should NOT all be positive/cheerful. Include:
+    • Frustrated rants about daily life (traffic, bad service, work stress)
+    • Sarcastic complaints about specific people or situations
+    • Cynical observations about society (without group dehumanization)
+    • Interpersonal conflicts vented online
+
+════════════════════════════════════════════════════════════════
+SENTENCE LENGTH GUIDELINE — VARY INTENTIONALLY
+════════════════════════════════════════════════════════════════
+Align to real-world distribution:
+
+  Hate speech (label=1):
+    ~50% SHORT  : 6–15 tokens  (outbursts, slurs, quick attacks, dismissals)
+    ~35% MEDIUM : 16–30 tokens (stereotype + justification, group blame)
+    ~15% LONG   : 31–55 tokens (rant with reasoning, coded argument)
+
+  Non-hate speech (label=0):
+    ~20% SHORT  : 6–15 tokens  (reactions, quick opinions, affirmations)
+    ~50% MEDIUM : 16–35 tokens (narrative snippets, complaints, opinions)
+    ~30% LONG   : 36–55 tokens (story fragments, detailed complaints, rants)
+
+Minimum: 6 tokens     Maximum: 55 tokens
+
+════════════════════════════════════════════════════════════════
+TOPIC DIVERSITY REQUIREMENT
+════════════════════════════════════════════════════════════════
+Cover ALL topics in this pool across the 400 rows. Max 10 rows per topic.
+
+  • Relationships & dating (ghosting, toxic, bucin, putus, pdkt)
+  • Social media drama & cancel culture
+  • Politics & government (no real names — reference "pemerintah", "mereka", etc.)
+  • Religion & religious practices
+  • Ethnicity, race & national origin
+  • Gender roles, misogyny & feminism discourse
+  • K-pop, entertainment, celebrity drama
+  • Sports (football, esports, basketball)
+  • Food, café & restaurant experiences
+  • Work, college, campus life (tugas, deadline, dosen, kerjaan)
+  • Product & service reviews (ojol, e-commerce, minimarket)
+  • Traffic & public transportation (macet, angkot, busway)
+  • Mental health & wellbeing (galau, overthinking, burnout — casual register)
+  • Body image & appearance (body shaming, fashion)
+  • Current events & trending social issues
+
+════════════════════════════════════════════════════════════════
+ADDITIONAL STYLE REQUIREMENTS
+════════════════════════════════════════════════════════════════
+  • Must read as a natural social media post, comment, reply, or caption
+  • Vary sentence type: statements, exclamations, rants, questions, responses
+  • May include common punctuation: ! ? ...  but NO emojis
+  • @mentions allowed — always write @user (never real names or usernames)
+  • Capitalisation should be casually inconsistent where natural (authentic)
+  • Some sentences may lack ending punctuation (authentic typing behavior)
+  • Sentence-initial lowercase is acceptable and common in real posts
+
+════════════════════════════════════════════════════════════════
+OUTPUT FORMAT — STRICT CSV
+════════════════════════════════════════════════════════════════
+Output ONLY the CSV block. No preamble. No explanation. No markdown fences
+(no ``` or --- before or after the CSV). Start immediately with the header row.
+
+Header (exact, case-sensitive, seven columns):
+  id,text,label,language,has_slang,has_abbrev,source
+
+Field specifications:
+  id        : Sequential integer. The user will specify the starting ID for
+              each batch. Batch 1 starts at 1, batch 2 at 401, etc.
+  text      : The generated sentence. ALWAYS wrap in double quotes.
+              If the sentence contains a double-quote character, escape it as ""
+              (RFC 4180 standard). Never use curly/smart quotes ("").
+  label     : 0 or 1 (integer, no quotes)
+  language  : always the literal string  mixed  (no quotes, no spaces)
+  has_slang : always  0  — Python pipeline computes the actual value later
+  has_abbrev: always  0  — Python pipeline computes the actual value later
+  source    : always the literal string  generated  (no quotes)
+
+Example rows (format reference only — do not copy or paraphrase content):
+  id,text,label,language,has_slang,has_abbrev,source
+  1,"gue literally belum makan dr tadi, starving bgt nih",0,mixed,0,0,generated
+  2,"org2 kayak mereka tuh fr gak pantes dapet hak yg sama",1,mixed,0,0,generated
+  3,"dia ghosting gue tiba-tiba. like what did i even do wrong",0,mixed,0,0,generated
+  4,"they always act like victims tapi nyatanya mereka yg bikin masalah",1,mixed,0,0,generated
+  5,"deadline besok tp gue msh gabisa mulai, help",0,mixed,0,0,generated
+  6,"perempuan mah emang gak bisa handle pressure, ngl no cap",1,mixed,0,0,generated
+
+════════════════════════════════════════════════════════════════
+BATCH CONTROL
+════════════════════════════════════════════════════════════════
+  • Generate exactly 400 rows per response: 200 hate (label=1) + 200 non-hate (label=0)
+  • Interleave rows — do NOT group all label=1 rows first then label=0
+  • After row 400, STOP immediately. Add no text after the last CSV row.
+  • To continue: user will type "Continue batch N, start id M"
+  • Do NOT repeat any sentence, idea, or close paraphrase from a previous batch
+  • Target: 16,000 rows total across 40 batches
+    Batch 1: IDs 1–400 | Batch 2: IDs 401–800 | ... | Batch 40: IDs 15,601–16,000
+
+════════════════════════════════════════════════════════════════
+SELF-CHECK BEFORE OUTPUTTING  (silent — do not print this section)
+════════════════════════════════════════════════════════════════
+  ✓ Exactly 400 rows: 200 label=1 and 200 label=0
+  ✓ All IDs are sequential integers starting from the user-specified start ID
+  ✓ Every text field is wrapped in straight double quotes
+  ✓ has_slang = 0 and has_abbrev = 0 for every single row
+  ✓ language = mixed for every row
+  ✓ source = generated for every row
+  ✓ Every sentence contains at least one natural informal element
+  ✓ NO sentence is disguised translation — covering the second half of any
+    ALTERNATIONAL row should NOT leave the first half saying the same thing.
+    Both halves carry distinct information.
+  ✓ Code-mixing pattern distribution: ~130–135 each for INSERTIONAL,
+    ALTERNATIONAL, HYBRID INFORMAL
+  ✓ Topics are varied — no topic exceeds 10 rows
+  ✓ Hate speech rows target a GROUP (not just an individual person)
+  ✓ Hate speech rows include a mix of explicit, moderate, and subtle forms
+  ✓ Sentence lengths vary: hate speech skews shorter, non-hate skews longer
+  ✓ Non-hate rows include negative/frustrated content, not only positive
+  ✓ Leet-speak rows do not exceed ~20 per batch
+  ✓ Rows are interleaved (not all hate first, then all non-hate)
+  ✓ No sentence is repeated or closely paraphrased from a previous batch
+  ✓ No sentence is copied from the reference data
+
+If any check fails, correct the rows before outputting.
